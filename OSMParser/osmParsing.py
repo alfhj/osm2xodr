@@ -519,18 +519,20 @@ class OSMWay:
 
 #Cell
 def parseAll(pfad, bildpfad = None, minimumHeight = 0.0, maximumHeight = 100.0, curveRadius=8):
+    print("Parsing OSM file")
     global topoParameter
     setHeights(minimumHeight, maximumHeight)
     if bildpfad is not None:
         topoParameter = convertTopoMap(bildpfad, pfad)
     else:
         topoParameter = convertTopoMap(None, pfad)
-    #create rNodedict with counter
+
+    print("create rNodedict with counter")
     for entity in parse_file(pfad):
         if isinstance(entity, Node):
             #if minLongitude <entity.lon< maxLongitude and minLatitude <entity.lat< maxLatitude:   # approximate longitude and latitude of Wuppertal
                  rNode(entity, substractMin=topoParameter)
-    #create streetrNodedict and count rNodeuse
+    print("create streetrNodedict and count rNodeuse")
     for entity in parse_file(pfad):
         if isinstance(entity, Way):
             for word in ["highway"]:#, "lanes", "oneway", "cycleway", "foot", "sidewalk",  "footway"]:
@@ -539,6 +541,7 @@ def parseAll(pfad, bildpfad = None, minimumHeight = 0.0, maximumHeight = 100.0, 
     for preWay in OSMPreWay.allWays.values():
         preWay._evaluate()
 
+    print("Evaluate junctions")
     for node in rNode.allrNodes.values():
         for way in node.incomingWays:
             node.createConnections(way)

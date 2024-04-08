@@ -4,12 +4,11 @@ from OSMParser.testing import TestEntity, _test_nodes, testSimpleRoad, test_3Way
 from OSMParser.osmParsing import parseAll,rNode, OSMWay,JunctionRoad, OSMWayEndcap, createOSMJunctionRoadLine, createOSMWayNodeList2XODRRoadLine
 from OSMParser.xodrWriting import startBasicXODRFile,fillNormalRoads,fillJunctionRoads
 
-osmPfad = 'map.osm'
-topographieKartenPfad = 'topomap.png'
-xodrPfad = 'output.xodr'
+osmPfad = '/mnt/chromeos/GoogleDrive/MyDrive/AI/Masteroppgave/Kode/Notebooks/gloshaugen.osm'
+topographieKartenPfad = '/mnt/chromeos/GoogleDrive/MyDrive/AI/Masteroppgave/Kode/Notebooks/hoyde.png'
+xodrPfad = '/mnt/chromeos/GoogleDrive/MyDrive/AI/Masteroppgave/Kode/Notebooks/gloshaugen.xodr'
 
-parseAll(osmPfad, bildpfad=topographieKartenPfad, minimumHeight = 163.0, maximumHeight= 192.0, curveRadius=12)
-
+parseAll(osmPfad, bildpfad=topographieKartenPfad, minimumHeight = 0.0, maximumHeight= 80.07621, curveRadius=12)
 startBasicXODRFile(xodrPfad)
 fillNormalRoads(xodrPfad)
 fillJunctionRoads(xodrPfad)
